@@ -2,7 +2,7 @@ use std::fs;
 
 pub fn locations() {
 
-    let location_ids = fs::read_to_string("resources/test.txt")
+    let location_ids = fs::read_to_string("resources/locations.txt")
         .expect("file not found");
 
     let mut ids_part1: Vec<i32> = Vec::new();
@@ -27,6 +27,7 @@ pub fn locations() {
 
     let mut previous_index_part_2 = -1;
     let mut total = 0;
+    let mut similarity_score = 0;
 
     for ids_1 in ids_part1.iter() {
 
@@ -58,11 +59,23 @@ pub fn locations() {
                 previous_elements.push(previous_index_part_2);
                 break;
             }
+            else if ids_2 == ids_1 {
+
+                total += 0;
+                sum.push(0);
+
+                previous_index_part_2 = actual_index_part_2;
+                previous_elements.push(previous_index_part_2);
+                break;
+            }
         }
     }
 
 
-    println!("total: {:?}", sum);
-    println!("previous index: {:?}", previous_elements);
+    // println!("ids 1: {:?}", ids_part1);
+    // println!("ids 2: {:?}", ids_part2);
+
+    println!("total: {:?}", total);
+    // println!("previous index: {:?}", previous_elements);
 }
 
