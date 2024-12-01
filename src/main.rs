@@ -1,7 +1,7 @@
-mod challenge_2024;
+mod location;
 
 fn main() {
 
     // challenge_2022::calories_calculator()
-    challenge_2024::locations()
+    location::locations()
 }

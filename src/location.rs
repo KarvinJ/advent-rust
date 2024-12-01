@@ -22,12 +22,8 @@ pub fn locations() {
     ids_part1.sort_by(|a, b| a.partial_cmp(b).unwrap());
     ids_part2.sort_by(|a, b| a.partial_cmp(b).unwrap());
 
-    let mut previous_elements: Vec<i32> = Vec::new();
-    let mut sum: Vec<i32> = Vec::new();
-
     let mut previous_index_part_2 = -1;
-    let mut total = 0;
-    let mut similarity_score = 0;
+    let mut part_1_answer = 0;
 
     for ids_1 in ids_part1.iter() {
 
@@ -43,39 +39,60 @@ pub fn locations() {
 
             if ids_1 > ids_2 {
 
-                total += ids_1 - ids_2;
-                sum.push(ids_1 - ids_2);
+                part_1_answer += ids_1 - ids_2;
 
                 previous_index_part_2 = actual_index_part_2;
-                previous_elements.push(previous_index_part_2);
                 break;
             }
             else if ids_2 > ids_1 {
 
-                total += ids_2 - ids_1;
-                sum.push(ids_2 - ids_1);
+                part_1_answer += ids_2 - ids_1;
 
                 previous_index_part_2 = actual_index_part_2;
-                previous_elements.push(previous_index_part_2);
                 break;
             }
             else if ids_2 == ids_1 {
 
-                total += 0;
-                sum.push(0);
+                part_1_answer += 0;
 
                 previous_index_part_2 = actual_index_part_2;
-                previous_elements.push(previous_index_part_2);
                 break;
             }
         }
     }
 
+    let part_2_answer = part2(ids_part1, ids_part2);
 
-    // println!("ids 1: {:?}", ids_part1);
-    // println!("ids 2: {:?}", ids_part2);
+    println!("total: {:?}", part_1_answer);
+    println!("total: {:?}", part_2_answer);
+}
 
-    println!("total: {:?}", total);
-    // println!("previous index: {:?}", previous_elements);
+fn part2(ids_part1: Vec<i32>, ids_part2: Vec<i32>) -> i32 {
+
+    let mut similarity_scores: Vec<i32> = Vec::new();
+
+    for ids_1 in ids_part1.iter() {
+
+        let mut similarity_score = 0;
+
+        for ids_2 in ids_part2.iter() {
+
+            if ids_1 == ids_2 {
+
+                similarity_score += 1;
+            }
+        }
+
+        similarity_scores.push(ids_1 * similarity_score);
+    }
+
+    let mut similarities_total_sum = 0;
+
+    for score in similarity_scores.iter() {
+
+        similarities_total_sum += score;
+    }
+
+    similarities_total_sum
 }
 
