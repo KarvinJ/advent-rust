@@ -30,8 +30,11 @@ pub fn calories_calculator() {
 
     let total_elements = top_calories_elf.len();
 
-    let total_calories_of_top3 = top_calories_elf.get(total_elements-1).unwrap() + top_calories_elf.get(total_elements - 2).unwrap() + top_calories_elf.get(total_elements - 3).unwrap();
+    let total_calories_of_top3 = top_calories_elf.get(total_elements - 1).unwrap()
+        + top_calories_elf.get(total_elements - 2).unwrap()
+        + top_calories_elf.get(total_elements - 3).unwrap();
 
     println!("Max calories elf: {}", max_calories_elf);
     println!("Total calories of top 3: {}", total_calories_of_top3);
 }
+
