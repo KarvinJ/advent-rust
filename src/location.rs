@@ -40,21 +40,20 @@ pub fn locations() {
             if ids_1 > ids_2 {
 
                 part_1_answer += ids_1 - ids_2;
-
                 previous_index_part_2 = actual_index_part_2;
                 break;
             }
+
             else if ids_2 > ids_1 {
 
                 part_1_answer += ids_2 - ids_1;
-
                 previous_index_part_2 = actual_index_part_2;
                 break;
             }
-            else if ids_2 == ids_1 {
+
+            else {
 
                 part_1_answer += 0;
-
                 previous_index_part_2 = actual_index_part_2;
                 break;
             }
@@ -63,13 +62,13 @@ pub fn locations() {
 
     let part_2_answer = part2(ids_part1, ids_part2);
 
-    println!("total: {:?}", part_1_answer);
-    println!("total: {:?}", part_2_answer);
+    println!("Part 1 answer: {:?}", part_1_answer);
+    println!("Part 2 answer: {:?}", part_2_answer);
 }
 
 fn part2(ids_part1: Vec<i32>, ids_part2: Vec<i32>) -> i32 {
 
-    let mut similarity_scores: Vec<i32> = Vec::new();
+    let mut similarities_total_sum = 0;
 
     for ids_1 in ids_part1.iter() {
 
@@ -83,14 +82,7 @@ fn part2(ids_part1: Vec<i32>, ids_part2: Vec<i32>) -> i32 {
             }
         }
 
-        similarity_scores.push(ids_1 * similarity_score);
-    }
-
-    let mut similarities_total_sum = 0;
-
-    for score in similarity_scores.iter() {
-
-        similarities_total_sum += score;
+        similarities_total_sum += ids_1 * similarity_score;
     }
 
     similarities_total_sum
