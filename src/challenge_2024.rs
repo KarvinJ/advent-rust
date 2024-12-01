@@ -34,7 +34,9 @@ pub fn locations() {
 
         for ids_2 in ids_part2.iter() {
 
-            if previous_index_part_2 == actual_index_part_2 {
+            if actual_index_part_2 <= previous_index_part_2 {
+
+                actual_index_part_2 += 1;
                 continue;
             }
 
@@ -43,7 +45,8 @@ pub fn locations() {
                 total += ids_1 - ids_2;
                 sum.push(ids_1 - ids_2);
 
-                previous_index_part_2 += 1;
+                previous_index_part_2 = actual_index_part_2;
+                previous_elements.push(previous_index_part_2);
                 break;
             }
             else if ids_2 > ids_1 {
@@ -51,7 +54,8 @@ pub fn locations() {
                 total += ids_2 - ids_1;
                 sum.push(ids_2 - ids_1);
 
-                previous_index_part_2 += 1;
+                previous_index_part_2 = actual_index_part_2;
+                previous_elements.push(previous_index_part_2);
                 break;
             }
         }
