@@ -8,7 +8,7 @@ pub fn run() {
     let mut safe_list: Vec<&str> = Vec::new();
     let mut safe_levels_quantity = 0;
 
-    let is_part2 = false;
+    let is_part2 = true;
 
     levels.lines().for_each(|ids| {
 
@@ -51,7 +51,16 @@ pub fn run() {
             else if is_part2 {
 
                 unsafe_levels_quantity += 1;
-                previous_level = actual_level;
+
+                if level_index == 2 {
+
+                    if is_ascending {
+
+                        previous_level = actual_level - 1;
+                    }else {
+                        previous_level = actual_level + 1;
+                    }
+                }
 
                 if unsafe_levels_quantity > 1 {
 
