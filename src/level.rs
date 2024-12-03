@@ -8,26 +8,28 @@ pub fn run() {
     let mut safe_list: Vec<&str> = Vec::new();
     let mut safe_levels_quantity = 0;
 
-    let is_part2 = true;
-
     levels.lines().for_each(|ids| {
 
-        let mut is_safe = true;
+        let is_part2 = true;
 
-        let mut level_index = 0;
+        let mut is_safe = true;
 
         let levels_arrays: Vec<&str> = ids.split_whitespace().collect();
 
         let mut previous_level = levels_arrays[0].parse::<i32>().unwrap();
-        let second_level = levels_arrays[1].parse::<i32>().unwrap();
+        let second_level = levels_arrays[levels_arrays.len() - 1].parse::<i32>().unwrap();
 
         let is_ascending = previous_level < second_level;
 
         let mut unsafe_levels_quantity = 0;
 
+        let mut level_index = -1;
+
         for level in levels_arrays.iter() {
 
             let actual_level = level.parse::<i32>().unwrap();
+
+            level_index += 1;
 
             if level_index == 0 {
 
@@ -35,8 +37,6 @@ pub fn run() {
                 previous_level = actual_level;
                 continue;
             }
-
-            level_index += 1;
 
             let level_gap = previous_level - actual_level;
 
@@ -50,9 +50,7 @@ pub fn run() {
             }
             else if is_part2 {
 
-                unsafe_levels_quantity += 1;
-
-                if level_index == 2 {
+                if level_index == 1 {
 
                     if is_ascending {
 
@@ -61,6 +59,8 @@ pub fn run() {
                         previous_level = actual_level + 1;
                     }
                 }
+
+                unsafe_levels_quantity += 1;
 
                 if unsafe_levels_quantity > 1 {
 
