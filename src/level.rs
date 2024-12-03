@@ -38,7 +38,7 @@ pub fn run() {
 
             level_index += 1;
 
-            let mut level_gap = previous_level - actual_level;
+            let level_gap = previous_level - actual_level;
 
             if is_ascending && actual_level > previous_level && level_gap.abs() < 4 {
 

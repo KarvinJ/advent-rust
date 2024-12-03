@@ -1,6 +1,6 @@
 use std::fs;
 
-pub fn locations() {
+pub fn run() {
 
     let location_ids = fs::read_to_string("resources/locations.txt")
         .expect("file not found");
