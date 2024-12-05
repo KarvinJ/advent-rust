@@ -10,7 +10,7 @@ pub fn run() {
 
     levels.lines().for_each(|ids| {
 
-        let is_part2 = true;
+        let is_part2 = false;
 
         let mut is_safe = true;
 
@@ -49,16 +49,6 @@ pub fn run() {
                 previous_level = actual_level;
             }
             else if is_part2 {
-
-                if level_index == 1 {
-
-                    if is_ascending {
-
-                        previous_level = actual_level - 1;
-                    }else {
-                        previous_level = actual_level + 1;
-                    }
-                }
 
                 unsafe_levels_quantity += 1;
 
