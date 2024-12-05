@@ -10,7 +10,7 @@ pub fn run() {
 
     levels.lines().for_each(|ids| {
 
-        let is_part2 = false;
+        let is_part2 = true;
 
         let mut is_safe = true;
 
